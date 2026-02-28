@@ -1,0 +1,5 @@
+.env
+config.php
+*.log
+
+vendor/
