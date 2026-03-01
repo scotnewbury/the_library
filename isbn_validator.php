@@ -9,7 +9,9 @@ function cleanIsbn($input) {
 }
 
 function isValidIsbn13($isbn) {
-    if (strlen($isbn) !== 13) return false;
+    if (strlen($isbn) !== 13) {
+      return "Incorrect Length";
+    }
 
     $sum = 0;
     for ($i = 0; $i < 12; $i++) {
@@ -17,5 +19,11 @@ function isValidIsbn13($isbn) {
     }
 
     $checkDigit = (10 - ($sum % 10)) % 10;
-    return $checkDigit === (int)$isbn[12];
+    if ($checkDigit === (int)$isbn[12]) {
+      return "Valid ISBN13";
+    } else {
+      return "Checksum incorrect";
+    }
+
+    // return $checkDigit === (int)$isbn[12];
 }
