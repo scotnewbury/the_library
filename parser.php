@@ -31,6 +31,5 @@ while (true) {
     } else {
         echo "Invalid: The digits are correct length, but it is not a valid ISBN-13." . PHP_EOL;
     }
-    // echo "You entered the valid ISBN number " . $cleanedInput . PHP_EOL;
   }
 }
