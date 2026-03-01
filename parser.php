@@ -1,5 +1,7 @@
 <?php
 
+require_once 'isbn_validator.php';
+
 // Instruction block
 echo "Welcome to The Library!" . PHP_EOL;
 echo "To add a new book, please enter the 13 digit ISBN number." . PHP_EOL . PHP_EOL;
@@ -21,9 +23,14 @@ while (true) {
   $inputLength = strlen($cleanedInput);
 
   // Check to make sure we have 13 digits left - the size of an ISBN
-  if ($inputLength === 13) {
-    echo "You entered " . $cleanedInput . PHP_EOL;echo "You entered " . $cleanedInput . PHP_EOL;    
-  } else {
+  if ($inputLength !== 13) {
     echo "Please remember, ISBN numbers are 13 digit numbers, please reenter your number." . PHP_EOL;
+  } else {
+    if (isValidIsbn13($cleanedInput)) {
+        echo "Success: " . $cleanedInput . " is a valid ISBN-13." . PHP_EOL;
+    } else {
+        echo "Invalid: The digits are correct length, but it is not a valid ISBN-13." . PHP_EOL;
+    }
+    // echo "You entered the valid ISBN number " . $cleanedInput . PHP_EOL;
   }
 }
