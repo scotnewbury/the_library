@@ -4,6 +4,10 @@
  * Contains logic for validating ISBN numbers.
  */
 
+function cleanIsbn($input) {
+    return preg_replace('/[^0-9X]/i', '', $input);
+}
+
 function isValidIsbn13($isbn) {
     if (strlen($isbn) !== 13) return false;
 

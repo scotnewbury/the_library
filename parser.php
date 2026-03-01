@@ -20,7 +20,7 @@ while (true) {
   }
     
   // Remove everything that isn't a number
-  $cleanedInput = preg_replace('/[^0-9]/', '', $normalizedInput);
+  $cleanedInput = cleanIsbn($normalizedInput);
   $inputLength = strlen($cleanedInput);
 
   // Check to make sure we have 13 digits left - the size of an ISBN
