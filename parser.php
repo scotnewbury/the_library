@@ -1,6 +1,7 @@
 <?php
 
 require_once 'isbn_validator.php';
+require_once 'write_to_book_ledger.php';
 
 // Instruction block
 echo "Welcome to The Library!" . PHP_EOL;
@@ -28,6 +29,7 @@ while (true) {
   } else {
     if (isValidIsbn13($cleanedInput)) {
         echo "Success: " . $cleanedInput . " is a valid ISBN-13." . PHP_EOL;
+        writeToBookLedger($cleanedInput);
     } else {
         echo "Invalid: The digits are correct length, but it is not a valid ISBN-13." . PHP_EOL;
     }
