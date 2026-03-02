@@ -13,7 +13,7 @@ function isValidIsbn13(string $input) {
   $isbn = preg_replace('/[^0-9X]/i', '', $input);
 
   if (strlen($isbn) !== 13) {
-    return "Incorrect Length";
+    return ["status" => "Incorrect Length"];
   }
 
   $sum = 0;
@@ -23,8 +23,8 @@ function isValidIsbn13(string $input) {
 
   $checkDigit = (10 - ($sum % 10)) % 10;
   if ($checkDigit === (int)$isbn[12]) {
-    return "Valid ISBN13";
+    return ["status" => "Valid ISBN13", "cleaned" => $isbn];
   } else {
-    return "Checksum Incorrect";
+    return ["status" => "Checksum Incorrect"];
   }
 }
