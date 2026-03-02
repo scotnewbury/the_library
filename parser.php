@@ -32,7 +32,7 @@ while (true) {
       echo "Success: " . $cleanedInput . " is a valid ISBN-13." . PHP_EOL;
       writeToBookLedger($cleanedInput);
       break;
-    case "Checksum incorrect":
+    case "Checksum Incorrect":
       echo "Invalid: The number of digits is correct, but it is not a valid ISBN-13." . PHP_EOL;
       break;
     default:
