@@ -18,19 +18,15 @@ while (true) {
   if ($normalizedInput == "exit") {
     break;
   }
-    
-  // Remove everything that isn't a number
-  $cleanedInput = cleanIsbn($normalizedInput);
 
-  // Check to make sure we have 13 digits left - the size of an ISBN
-
-  switch (isValidIsbn13($cleanedInput)) {
+  $valid_check = isValidIsbn13($normalizedInput);
+  switch ($valid_check["status"]) {
     case "Incorrect Length":
       echo "Please remember, ISBN numbers are 13 digit numbers, please reenter your number." . PHP_EOL;
       break;
     case "Valid ISBN13":
-      echo "Success: " . $cleanedInput . " is a valid ISBN-13." . PHP_EOL;
-      writeToBookLedger($cleanedInput);
+      echo "Success: " . $valid_check["cleaned"] . " is a valid ISBN-13." . PHP_EOL;
+      writeToBookLedger($valid_check["cleaned"]);
       break;
     case "Checksum Incorrect":
       echo "Invalid: The number of digits is correct, but it is not a valid ISBN-13." . PHP_EOL;
