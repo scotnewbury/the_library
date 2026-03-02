@@ -22,7 +22,7 @@ function isValidIsbn13(string $isbn) {
     if ($checkDigit === (int)$isbn[12]) {
       return "Valid ISBN13";
     } else {
-      return "Checksum incorrect";
+      return "Checksum Incorrect";
     }
 
     // return $checkDigit === (int)$isbn[12];
