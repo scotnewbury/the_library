@@ -26,7 +26,7 @@ echo str_repeat("-", 55) . PHP_EOL;
 foreach ($test_conditions as $key => $value) {
     $test_response = isValidIsbn13($key);
     
-    if ($test_response == $value) {
+    if ($test_response["status"] == $value) {
       $status = " PASS ";
       $style  = BG_PASS;
     } else {
