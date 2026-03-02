@@ -8,7 +8,7 @@ function cleanIsbn($input) {
     return preg_replace('/[^0-9X]/i', '', $input);
 }
 
-function isValidIsbn13($isbn) {
+function isValidIsbn13(string $isbn) {
     if (strlen($isbn) !== 13) {
       return "Incorrect Length";
     }
