@@ -8,15 +8,15 @@ const BG_FAIL  = "\e[1;37;41m"; // Bold White on Red
 const CLR_RESET = "\e[0m";      // Reset the color coding
 
 $test_conditions = [
-  "9781603020220" => "Valid ISBN13",
-  "9 781603 020220" => "Valid ISBN13",
-  "9-781603-020220" => "Valid ISBN13",
-  "123" => "Incorrect Length",
-  "abc456" => "Incorrect Length",
-  "abcdef" => "Incorrect Length",
-  "" => "Incorrect Length",
-  "12345678901234" => "Incorrect Length",
-  "1234567890123" => "Checksum Incorrect"
+  '9781603020220' => 'Valid ISBN13',
+  '9 781603 020220' => 'Valid ISBN13',
+  '9-781603-020220' => 'Valid ISBN13',
+  '123' => 'Incorrect Length',
+  'abc456' => 'Incorrect Length',
+  'abcdef' => 'Incorrect Length',
+  '' => 'Incorrect Length',
+  '12345678901234' => 'Incorrect Length',
+  '1234567890123' => 'Checksum Incorrect'
 ];
 
 // Print the header
