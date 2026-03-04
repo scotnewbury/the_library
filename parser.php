@@ -28,8 +28,12 @@ while (true) {
     case "Valid ISBN13":
       echo "Success: " . $valid_check["cleaned"] . " is a valid ISBN-13." . PHP_EOL;
       $bookInfo = getBookMetadata($valid_check['cleaned']);
-      writeToBookLedger($bookInfo);
-      break;
+      if (array_key_exists('status', $bookInfo)) {
+        break;
+      } else {
+        writeToBookLedger($bookInfo);
+        break;
+      }
     case "Checksum Incorrect":
       echo "Invalid: The number of digits is correct, but it is not a valid ISBN-13." . PHP_EOL;
       break;

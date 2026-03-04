@@ -9,23 +9,27 @@ function getBookMetadata ($isbn) {
 
   // Did we get json data from the call?
   if ($jsonData === false || empty($jsonData)) {
-    die("Error: Could not fetch data from the API.");
-  }
-
-  // // Conver the data to an associative array
-  $bookData = json_decode($jsonData, true);
-
-  // Check that we received book information
-  if ($bookData['numFound'] > 0) {
-      $book = $bookData['docs'][0];
-      
-      // Now you can access the 'data' key which contains the title
-      $title = $book['title'];
-      return [
-        'isbn' => $isbn,
-        'title' => $title,
-      ];
+    echo "Error: Could not fetch data from the API.";
+    return [
+      'status' => 'No Data',
+    ];
   } else {
-      echo "No records found for this ISBN.";
-  } 
+    // // Conver the data to an associative array
+      $bookData = json_decode($jsonData, true);
+
+      // Check that we received book information
+      if ($bookData['numFound'] > 0) {
+          $book = $bookData['docs'][0];
+          
+          // Now you can access the 'data' key which contains the title
+          $title = $book['title'];
+          return [            
+            'isbn' => $isbn,
+            'title' => $title,
+          ];
+      } else {
+          echo "No records found for this ISBN.";
+      } 
+  }
+  
 }
