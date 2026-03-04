@@ -1,8 +1,8 @@
 <?php
 
-require_once 'isbn_validator.php';
-require_once 'write_to_book_ledger.php';
-require_once 'get_book_metadata.php';
+require_once 'src/isbn_validator.php';
+require_once 'src/write_to_book_ledger.php';
+require_once 'src/get_book_metadata.php';
 
 // Instruction block
 echo "Welcome to The Library!" . PHP_EOL;
