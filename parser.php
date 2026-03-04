@@ -2,6 +2,7 @@
 
 require_once 'isbn_validator.php';
 require_once 'write_to_book_ledger.php';
+require_once 'get_book_metadata.php';
 
 // Instruction block
 echo "Welcome to The Library!" . PHP_EOL;
@@ -26,7 +27,8 @@ while (true) {
       break;
     case "Valid ISBN13":
       echo "Success: " . $valid_check["cleaned"] . " is a valid ISBN-13." . PHP_EOL;
-      writeToBookLedger($valid_check["cleaned"]);
+      $bookInfo = getBookMetadata($valid_check['cleaned']);
+      writeToBookLedger($bookInfo);
       break;
     case "Checksum Incorrect":
       echo "Invalid: The number of digits is correct, but it is not a valid ISBN-13." . PHP_EOL;

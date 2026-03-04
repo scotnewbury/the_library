@@ -1,7 +1,5 @@
 <?php
 
-require_once 'write_to_book_ledger.php';
-
 function getBookMetadata ($isbn) {
   // Create the URL for the API call
   $url = "http://openlibrary.org/search.json?q=". $isbn;
@@ -31,13 +29,3 @@ function getBookMetadata ($isbn) {
       echo "No records found for this ISBN.";
   } 
 }
-
-$isbn = "9781603020220";
-
-$bookInfo = getBookMetadata($isbn);
-
-writeToBookLedger($bookInfo);
-
-echo "The book ISBN13 is: " . $bookInfo['isbn'] . PHP_EOL;
-echo "The book title is: " . $bookInfo['title'] . PHP_EOL;
-
