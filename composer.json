@@ -1,0 +1,12 @@
+{
+  "name": "scot/the-library",
+  "description": "ISBN validation and library ledger app",
+  "type": "project",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Library\\": "src/"
+    }
+  },
+  "require": {}
+}
