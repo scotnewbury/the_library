@@ -1,6 +1,8 @@
 <?php
 
-require_once 'isbn_validator.php';
+require __DIR__ . '/../vendor/autoload.php';
+use Library\IsbnValidator;
+$validator = new IsbnValidator();
 
 // ANSI Escape Constants
 const BG_PASS  = "\e[1;37;42m"; // Bold White on Green
@@ -24,7 +26,7 @@ printf("%-20s %-20s %-10s\n", "TEST VALUE", "RESPONSE", "RESULT");
 echo str_repeat("-", 55) . PHP_EOL;
 
 foreach ($test_conditions as $key => $value) {
-    $test_response = isValidIsbn13($key);
+    $test_response = $validator->isValidIsbn13($key);
     
     if ($test_response["status"] == $value) {
       $status = " PASS ";
