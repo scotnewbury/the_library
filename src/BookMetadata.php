@@ -7,8 +7,8 @@
 
 namespace Library;
 
-class GetBookMetadata {
-  public function getBookMetadata ($isbn) {
+class BookMetadata {
+  public function getBook ($isbn) {
     // Create the URL for the API call
     $url = "http://openlibrary.org/search.json?q=". $isbn;
 
