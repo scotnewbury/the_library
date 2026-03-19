@@ -7,8 +7,8 @@
 
 namespace Library;
 
-class WriteToBookLedger {
-  public function writeToBookLedger($bookInfo) {
+class BookLedger {
+  public function writeBook($bookInfo) {
     $currentTimestamp = date('Y-m-d H:i:s', time());
     // Create an absoloute path for the ledger
     $ledgerPath = __DIR__ . '/../data/books.csv';
