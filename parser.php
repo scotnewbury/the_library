@@ -1,8 +1,17 @@
 <?php
 
-require_once 'src/isbn_validator.php';
-require_once 'src/write_to_book_ledger.php';
-require_once 'src/get_book_metadata.php';
+/**
+ * Run the autoloader
+ */
+require __DIR__ . '/vendor/autoload.php';
+
+use Library\IsbnValidator;
+use Library\BookMetadata;
+use Library\BookLedger;
+
+$validator = new IsbnValidator();
+$metadata = new BookMetadata();
+$ledger = new BookLedger();
 
 // Instruction block
 echo "Welcome to The Library!" . PHP_EOL;
@@ -20,18 +29,18 @@ while (true) {
     break;
   }
 
-  $valid_check = isValidIsbn13($normalizedInput);
+  $valid_check = $validator->isValidIsbn13($normalizedInput);
   switch ($valid_check["status"]) {
     case "Incorrect Length":
       echo "Please remember, ISBN numbers are 13 digit numbers, please reenter your number." . PHP_EOL;
       break;
     case "Valid ISBN13":
       echo "Success: " . $valid_check["cleaned"] . " is a valid ISBN-13." . PHP_EOL;
-      $bookInfo = getBookMetadata($valid_check['cleaned']);
+      $bookInfo = $metadata->getBook($valid_check['cleaned']);
       if (array_key_exists('status', $bookInfo)) {
         break;
       } else {
-        writeToBookLedger($bookInfo);
+        $ledger->writeBook($bookInfo);
         break;
       }
     case "Checksum Incorrect":
