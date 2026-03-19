@@ -1,6 +1,6 @@
 {
   "name": "scot/the-library",
-  "description": "ISBN validation and library ledger app",
+  "description": "Library Ledger app",
   "type": "project",
   "license": "MIT",
   "autoload": {
