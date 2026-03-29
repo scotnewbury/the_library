@@ -29,24 +29,12 @@ while (true) {
     break;
   }
 
-  $valid_check = $validator->isValidIsbn13($normalizedInput);
-  switch ($valid_check["status"]) {
-    case "Incorrect Length":
-      echo "Please remember, ISBN numbers are 13 digit numbers, please reenter your number." . PHP_EOL;
-      break;
-    case "Valid ISBN13":
-      echo "Success: " . $valid_check["cleaned"] . " is a valid ISBN-13." . PHP_EOL;
-      $bookInfo = $metadata->getBook($valid_check['cleaned']);
-      if (array_key_exists('status', $bookInfo)) {
-        break;
-      } else {
-        $ledger->writeBook($bookInfo);
-        break;
-      }
-    case "Checksum Incorrect":
-      echo "Invalid: The number of digits is correct, but it is not a valid ISBN-13." . PHP_EOL;
-      break;
-    default:
-      echo "An unknown error has occurred." . PHP_EOL;
+  try {
+    $valid_check = $validator->isValidIsbn13($normalizedInput);
+    $bookInfo = $metadata->getBook($valid_check);
+    $ledger->writeBook($bookInfo);
+    echo "Success! Your book has been added to the ledger." . PHP_EOL;
+  } catch (\Exception $e) {
+    echo $e->getMessage() . PHP_EOL;
   }
 }

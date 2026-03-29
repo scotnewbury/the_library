@@ -16,7 +16,7 @@ class IsbnValidator {
     $isbn = $this->cleanIsbn($input);
 
     if (strlen($isbn) !== 13) {
-      return ["status" => "Incorrect Length"];
+      throw new \Exception("The entry is not the correct length.");
     }
 
     $sum = 0;
@@ -26,9 +26,9 @@ class IsbnValidator {
 
     $checkDigit = (10 - ($sum % 10)) % 10;
     if ($checkDigit === (int)$isbn[12]) {
-      return ["status" => "Valid ISBN13", "cleaned" => $isbn];
+      return $isbn;
     } else {
-      return ["status" => "Checksum Incorrect"];
+      throw new \Exception("The checksum is incorrect.");
     }
   }
 }

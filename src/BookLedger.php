@@ -18,7 +18,7 @@ class BookLedger {
     }
     $handle = fopen("$ledgerPath", "a");
     if ($handle === false) {
-      die("Error: Unable to open the Book Ledger for writing.");
+      throw new \Exception("Unable to open the Book Ledger for writing.");
     }
     
     // Pull just the array values out

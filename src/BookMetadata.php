@@ -17,18 +17,13 @@ class BookMetadata {
 
     // Did we get json data from the call?
     if ($jsonData === false || empty($jsonData)) {
-      echo "Error: Could not fetch data from the API.";
-      return [
-        'status' => 'No Data',
-      ];
+      throw new \Exception("Could not fetch data from the Open Library API.");
     } else {
-      // // Conver the data to an associative array
+      // Convertt the data to an associative array
         $bookData = json_decode($jsonData, true);
-
         // Check that we received book information
         if ($bookData['numFound'] > 0) {
             $book = $bookData['docs'][0];
-            
             // Now you can access the 'data' key which contains the title
             $title = $book['title'];
             return [            
@@ -36,7 +31,7 @@ class BookMetadata {
               'title' => $title,
             ];
         } else {
-            echo "No records found for this ISBN.";
+            throw new \Exception("No records found for this ISBN.");
         } 
     }
   }
