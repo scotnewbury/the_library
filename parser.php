@@ -16,7 +16,7 @@ $ledger = new BookLedger();
 // Instruction block
 echo "Welcome to The Library!" . PHP_EOL;
 echo "To add a new book, please enter the 13 digit ISBN number." . PHP_EOL . PHP_EOL;
-echo "To exit this applicaiton, enter the word 'exit' instead of a number." . PHP_EOL;
+echo "To exit this applicatoon, enter the word 'exit' instead of a number." . PHP_EOL;
 
 while (true) {
   // Grab the user input
