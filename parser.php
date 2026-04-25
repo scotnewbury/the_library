@@ -11,7 +11,7 @@ use Library\BookLedger;
 
 $validator = new IsbnValidator();
 $metadata = new BookMetadata();
-$ledger = new BookLedger();
+$ledger = new BookLedger(__DIR__ . '/data/books.csv');
 
 // Instruction block
 echo "Welcome to The Library!" . PHP_EOL;

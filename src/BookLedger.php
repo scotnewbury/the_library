@@ -9,16 +9,23 @@ namespace Library;
 
 class BookLedger
 {
+    public $ledgerPath;
+
+    function __construct($ledgerLocation = null)
+    {
+        $this->ledgerPath = $ledgerLocation ?? __DIR__ . '/data/books.csv';
+    }
+
     public function writeBook($bookInfo)
     {
         $currentTimestamp = date('Y-m-d H:i:s', time());
         // Create an absoloute path for the ledger
-        $ledgerPath = __DIR__ . '/../data/books.csv';
+        // $ledgerPath = __DIR__ . '/../data/books.csv';
         // Create the directory if it isn't there
         if (!is_dir(__DIR__ . '/../data')) {
             mkdir(__DIR__ . '/../data/', 0755, true);
         }
-        $handle = fopen("$ledgerPath", "a");
+        $handle = fopen("$this->ledgerPath", "a");
         if ($handle === false) {
             throw new \Exception("Unable to open the Book Ledger for writing.");
         }
@@ -28,7 +35,7 @@ class BookLedger
         // Add the current timestamp to the end of the row
         $rowData[] = $currentTimestamp;
         // Write the row
-        fputcsv($handle, $rowData);
+        fputcsv($handle, $rowData, ',', '"', '');
         fclose($handle);
     }
 }
