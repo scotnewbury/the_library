@@ -24,12 +24,25 @@ class IsbnValidatorTest extends TestCase
         $this->assertEquals('9781603020220', $result);
     }
 
-    public function testWrongLength(): void
+    public static function lengthProvider(): array
+    {
+      return [
+        ['123'],
+        ['abc456'],
+        ['DEF789'],
+        ['abcdef'],
+        [''],
+        ['12345678901234'],
+      ];
+    }
+
+    #[DataProvider('lengthProvider')]
+    public function testWrongLength($isbn): void
     {
       $validator = new IsbnValidator();
       $this->expectException(\Exception::class);
       $this->expectExceptionMessage('The entry is not the correct length.');
-      $validator->isValidIsbn13('123');
+      $validator->isValidIsbn13($isbn);
     }
 
     public function testChecksum(): void
