@@ -2,14 +2,25 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 use Library\IsbnValidator;
- use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 
 class IsbnValidatorTest extends TestCase
 {
-    public function testValidIsbn(): void
+    public static function isbnProvider(): array
+    {
+      return [
+        ['9781603020220'],
+        ['9 781603 020220'],
+        ['9-781603-020220'],
+      ];
+    }
+
+    #[DataProvider('isbnProvider')]
+    public function testValidIsbn($isbn): void
     {
         $validator = new IsbnValidator();
-        $result = $validator->isValidIsbn13('9781603020220');
+        $result = $validator->isValidIsbn13($isbn);
         $this->assertEquals('9781603020220', $result);
     }
 

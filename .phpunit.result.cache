@@ -1,1 +1,0 @@
-{"version":2,"defects":{"IsbnValidatorTest::testValidIsbn":8,"IsbnValidatorTest::testWrongLength":8,"IsbnValidatorTest::testChecksum":8},"times":{"IsbnValidatorTest::testValidIsbn":0.024,"IsbnValidatorTest::testWrongLength":0.001,"IsbnValidatorTest::testChecksum":0}}
