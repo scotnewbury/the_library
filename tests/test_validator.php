@@ -1,7 +1,9 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
+
 use Library\IsbnValidator;
+
 $validator = new IsbnValidator();
 
 // ANSI Escape Constants
@@ -10,15 +12,15 @@ const BG_FAIL  = "\e[1;37;41m"; // Bold White on Red
 const CLR_RESET = "\e[0m";      // Reset the color coding
 
 $test_conditions = [
-  '9781603020220' => '9781603020220',
-  '9 781603 020220' => '9781603020220',
-  '9-781603-020220' => '9781603020220',
-  '123' => 'The entry is not the correct length.',
-  'abc456' => 'The entry is not the correct length.',
-  'abcdef' => 'The entry is not the correct length.',
-  '' => 'The entry is not the correct length.',
-  '12345678901234' => 'The entry is not the correct length.',
-  '1234567890123' => 'The checksum is incorrect.'
+    '9781603020220' => '9781603020220',
+    '9 781603 020220' => '9781603020220',
+    '9-781603-020220' => '9781603020220',
+    '123' => 'The entry is not the correct length.',
+    'abc456' => 'The entry is not the correct length.',
+    'abcdef' => 'The entry is not the correct length.',
+    '' => 'The entry is not the correct length.',
+    '12345678901234' => 'The entry is not the correct length.',
+    '1234567890123' => 'The checksum is incorrect.'
 ];
 
 // Print the header
@@ -29,19 +31,19 @@ foreach ($test_conditions as $key => $value) {
     $test_response = "";
 
     try {
-      $test_response = $validator->isValidIsbn13($key);
+        $test_response = $validator->isValidIsbn13($key);
     } catch (\Exception $e) {
-      $test_response = $e ->getMessage();
-    } 
-    
-    if ($test_response == $value) {
-      $status = " PASS ";
-      $style  = BG_PASS;
-    } else {
-      $status = " FAIL ";
-      $style  = BG_FAIL;
+        $test_response = $e->getMessage();
     }
- 
+
+    if ($test_response == $value) {
+        $status = " PASS ";
+        $style  = BG_PASS;
+    } else {
+        $status = " FAIL ";
+        $style  = BG_FAIL;
+    }
+
     // Center the status string inside a 12 character width
     $padded_status = str_pad($status, 12, " ", STR_PAD_BOTH);
 
