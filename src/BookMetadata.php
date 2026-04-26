@@ -7,6 +7,8 @@
 
 namespace Library;
 
+use GuzzleHttp\Client;
+
 class BookMetadata
 {
     public function getBook($isbn)
@@ -15,7 +17,9 @@ class BookMetadata
         $url = "http://openlibrary.org/search.json?q=" . $isbn;
 
         // Grab the json from the Open Library API
-        $jsonData = file_get_contents($url);
+        $libraryClient = new Client();
+        $response = $libraryClient->get($url);
+        $jsonData = $response->getBody()->getContents();
 
         // Did we get json data from the call?
         if ($jsonData === false || empty($jsonData)) {

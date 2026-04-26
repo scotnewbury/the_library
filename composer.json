@@ -1,15 +1,17 @@
 {
-  "name": "scot/the-library",
-  "description": "Library Ledger app",
-  "type": "project",
-  "license": "MIT",
-  "autoload": {
-    "psr-4": {
-      "Library\\": "src/"
+    "name": "scot/the-library",
+    "description": "Library Ledger app",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Library\\": "src/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11"
     }
-  },
-  "require": {},
-  "require-dev": {
-    "phpunit/phpunit": "^11"
-  }
 }
