@@ -11,14 +11,21 @@ use GuzzleHttp\Client;
 
 class BookMetadata
 {
+
+    public $libraryClient;
+
+    function __construct($theClient = null)
+    {
+        $this->libraryClient = $theClient() ?? new Client();
+    }
+
     public function getBook($isbn)
     {
         // Create the URL for the API call
         $url = "http://openlibrary.org/search.json?q=" . $isbn;
 
         // Grab the json from the Open Library API
-        $libraryClient = new Client();
-        $response = $libraryClient->get($url);
+        $response = $this->libraryClient->get($url);
         $jsonData = $response->getBody()->getContents();
 
         // Did we get json data from the call?
