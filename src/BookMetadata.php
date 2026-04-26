@@ -16,7 +16,7 @@ class BookMetadata
 
     function __construct($theClient = null)
     {
-        $this->libraryClient = $theClient() ?? new Client();
+        $this->libraryClient = $theClient ?? new Client();
     }
 
     public function getBook($isbn)
